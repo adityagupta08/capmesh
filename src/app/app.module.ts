@@ -27,6 +27,7 @@ import { AwardsComponent } from './profile/accomplishment/awards/awards.componen
 import { PublicationsComponent } from './profile/accomplishment/publications/publications.component';
 import { SkillsComponent } from './profile/skills/skills.component';
 import { EndorsementComponent } from './profile/endorsement/endorsement.component';
+import { ChatsComponent } from './chats/chats.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { EndorsementComponent } from './profile/endorsement/endorsement.componen
     AwardsComponent,
     PublicationsComponent,
     SkillsComponent,
-    EndorsementComponent
+    EndorsementComponent,
+    ChatsComponent
   ],
   imports: [
     BrowserModule,
