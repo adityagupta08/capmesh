@@ -2,17 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
+import { AuthService } from '../../auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExperienceService {
 
-  private _urlGetExperience = 'http://localhost:8080/rest-api/users/get';
+  
+  constructor(private http: HttpClient, private auth:AuthService) { }
+
+  private _urlGetExperience = 'http://localhost:8080/rest-api/users/get/'+this.auth.getUser();
   private _urlAddExperience = 'http://localhost:8080/rest-api/users/addExperience'
   private _urlUpdateExperience = 'http://localhost:8080/rest-api/users/updateExperience/';
   private _urlremoveExperience = 'http://localhost:8080/rest-api/users/removeExperience/';
-  constructor(private http: HttpClient) { }
 
   public objString;
 
@@ -21,7 +24,7 @@ export class ExperienceService {
   }
 
   updateExperienceDatabase(designation: string, companyName: string, timePeriod: string, id: string): Observable<any> {
-    this.objString = '{"designation":"'+ designation+ '","companyName":"'+ companyName +'","timePeriod":"'+ timePeriod+'"}';
+    this.objString = '{"userName":"'+ this.auth.getUser() +'","designation":"'+ designation+ '","companyName":"'+ companyName +'","timePeriod":"'+ timePeriod+'"}';
     console.log(JSON.parse(this.objString));
     return this.http.put<any>(this._urlUpdateExperience+id, JSON.parse(this.objString));
   }
@@ -31,7 +34,7 @@ export class ExperienceService {
   }
 
   removeExperience(id:string): Observable<any>{
-    return this.http.put<any>(this._urlremoveExperience+id, {})
+    return this.http.put<any>(this._urlremoveExperience+id,  JSON.parse('{"userName":"'+this.auth.getUser()+'"}'))
   }
 
 

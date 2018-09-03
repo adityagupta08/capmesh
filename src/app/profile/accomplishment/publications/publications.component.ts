@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicationsService } from '../../Services/publications.service'
 import{NgForm} from '@angular/forms'
+import { AuthService } from '../../../auth.service';
 
 @Component({
   selector: 'app-publications',
@@ -21,7 +22,7 @@ export class PublicationsComponent implements OnInit {
   public year1;
   public strObj;
 
-  constructor(private publicationService: PublicationsService) { }
+  constructor(private publicationService: PublicationsService, private auth:AuthService) { }
 
   ngOnInit() {
     this.getPublication()
@@ -63,7 +64,7 @@ export class PublicationsComponent implements OnInit {
     this.publicationTopic1=topic;
     this.publishedBy1 = comName;
     this.year1 = tPeriod;
-    this.strObj = '{"name":"' + this.publicationName1 + '","topic":"' + this.publicationTopic1 + '","publishedBy":"' + this.publishedBy1 + '","year":"' + this.year1 + '"}';
+    this.strObj = '{"userName":"'+ this.auth.getUser() +'","name":"' + this.publicationName1 + '","topic":"' + this.publicationTopic1 + '","publishedBy":"' + this.publishedBy1 + '","year":"' + this.year1 + '"}';
     this.strObj = JSON.parse(this.strObj);
     this.publicationService.addPublication(this.strObj).subscribe(data => this.userData = data);
     forms.resetForm();

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AwardsService } from '../../Services/awards.service';
 import {NgForm} from '@angular/forms';
+import { AuthService } from '../../../auth.service';
 @Component({
   selector: 'app-awards',
   templateUrl: './awards.component.html',
@@ -17,7 +18,7 @@ export class AwardsComponent implements OnInit {
   public year1;
   public strObj;
 
-  constructor(private awardsService: AwardsService) { }
+  constructor(private awardsService: AwardsService, private auth: AuthService) { }
 
   ngOnInit() {
     this.getAwards();
@@ -56,7 +57,7 @@ export class AwardsComponent implements OnInit {
     this.awardName1 = des;
     this.awardedBy1 = comName;
     this.year1 = tPeriod;
-    this.strObj = '{"name":"' + this.awardName1 + '","awardedBy":"' + this.awardedBy1 + '","year":"' + this.year1 + '"}';
+    this.strObj = '{"userName":"'+ this.auth.getUser() +'","name":"' + this.awardName1 + '","awardedBy":"' + this.awardedBy1 + '","year":"' + this.year1 + '"}';
     this.strObj = JSON.parse(this.strObj);
     this.awardsService.addAward(this.strObj).subscribe(data => this.userData = data);
     forms.resetForm();

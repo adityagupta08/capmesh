@@ -2,17 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
+import { AuthService } from '../../auth.service';
 @Injectable({
   providedIn: 'root'
 })
 export class CertificationService {
 
-  private _urlGetCertification = 'http://localhost:8080/rest-api/users/get';
+  
+
+  constructor(private http: HttpClient, private auth:AuthService) { }
+
+  private _urlGetCertification = 'http://localhost:8080/rest-api/users/get/'+this.auth.getUser();
   private _urlAddCertification = 'http://localhost:8080/rest-api/users/addCertificate'
   private _urlUpdateCertification = 'http://localhost:8080/rest-api/users/changeCertificate/';
   private _urlremoveCertification = 'http://localhost:8080/rest-api/users/removeCertificate/';
-
-  constructor(private http: HttpClient) { }
 
   public objString;
 
@@ -21,7 +24,7 @@ export class CertificationService {
   }
 
   updateCertification(name: string, issuedBy: string, year: string, id: string): Observable<any> {
-    this.objString = '{"name":"'+ name+ '","issuedBy":"'+ issuedBy +'","year":"'+ year+'"}';
+    this.objString = '{"userName":"'+ this.auth.getUser() +'","name":"'+ name+ '","issuedBy":"'+ issuedBy +'","year":"'+ year+'"}';
     console.log(JSON.parse(this.objString));
     return this.http.put<any>(this._urlUpdateCertification+id, JSON.parse(this.objString));
   }
@@ -31,7 +34,7 @@ export class CertificationService {
   }
 
   removeCertification(id:string): Observable<any>{
-    return this.http.put<any>(this._urlremoveCertification+id, {})
+    return this.http.put<any>(this._urlremoveCertification+id, JSON.parse('{"userName":"'+this.auth.getUser()+'"}'))
   }
 
 

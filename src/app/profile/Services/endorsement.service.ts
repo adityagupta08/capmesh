@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
+import { AuthService } from '../../auth.service';
 @Injectable({
   providedIn: 'root'
 })
 export class EndorsementService {
-  private _urlGetEndorsement = 'http://localhost:8080/rest-api/users/get';
-  private _urlAddEndorsement = 'http://localhost:8080/rest-api/users/addEndorsement/dip95'
+  
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth:AuthService) { }
+
+  private _urlGetEndorsement = 'http://localhost:8080/rest-api/users/get/'+this.auth.getUser();
+  private _urlAddEndorsement = 'http://localhost:8080/rest-api/users/addEndorsement/dip95'
   public objString;
 
   getEndorsement(): Observable<User[]> {

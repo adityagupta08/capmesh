@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CertificationService } from '../../Services/certification.service'
 import {NgForm} from '@angular/forms'
+import { AuthService } from '../../../auth.service';
 @Component({
   selector: 'app-certification',
   templateUrl: './certification.component.html',
@@ -19,7 +20,7 @@ export class CertificationComponent implements OnInit {
   public strObj;
 
 
-  constructor(private certificationService: CertificationService) { }
+  constructor(private certificationService: CertificationService , private auth :AuthService) { }
 
   ngOnInit() {
     this.getCertification();
@@ -59,7 +60,7 @@ export class CertificationComponent implements OnInit {
     this.certificationName1 = des;
     this.issuedBy1 = comName;
     this.year1 = tPeriod;
-    this.strObj = '{"name":"' + this.certificationName1 + '","issuedBy":"' + this.issuedBy1 + '","year":"' + this.year1 + '"}';
+    this.strObj = '{"userName":"'+ this.auth.getUser() +'","name":"' + this.certificationName1 + '","issuedBy":"' + this.issuedBy1 + '","year":"' + this.year1 + '"}';
     this.strObj = JSON.parse(this.strObj);
     this.certificationService.addCertification(this.strObj).subscribe(data => this.userData = data)
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SkillsService } from '../Services/skills.service';
-import {NgForm} from '@angular/forms'
+import { NgForm } from '@angular/forms'
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.component.html',
@@ -24,29 +24,15 @@ export class SkillsComponent implements OnInit {
     });
   }
 
-  addskillDatabase(forms:NgForm,skill: string) {
-    var flag = false;
-    for (var data of this.userData[0].profile.skills) {
-      if (data != skill) {
-        flag = true;
-      }
-      else {
-        flag = false;
-        return;
-      }
-    }
-    if (flag == true) {
-      this.skillName1 = skill;
-      this.skillsService.addSkills(this.skillName1).subscribe(data => this.userData = data)
-    }
-    else if(flag==false) {
-      alert("Already Exists!!!");
-    }
+  addskillDatabase(forms: NgForm, skill: string) {
+    this.skillName1 = skill;
+    console.log(this.skillName1)
+    this.skillsService.addSkills(this.skillName1).subscribe(data => this.userData = data);
     forms.resetForm();
   }
 
-removeSkills(skill: string) {
-  this.skillsService.removeSkills(skill).subscribe(data => this.userData = data);
-}
+  removeSkills(skill: string) {
+    this.skillsService.removeSkills(skill).subscribe(data => this.userData = data);
+  }
 
 }

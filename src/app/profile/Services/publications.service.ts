@@ -2,18 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
+import { AuthService } from '../../auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PublicationsService {
-  private _urlGetPublication = 'http://localhost:8080/rest/api/users/get';
-  private _urlAddPublication = 'http://localhost:8080/rest/api/users/addPublication'
-  private _urlUpdatePublication = 'http://localhost:8080/rest/api/users/changePublication/';
-  private _urlremovePublication = 'http://localhost:8080/rest/api/users/removePublication/';
+ 
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth:AuthService) { }
+
+  private _urlGetPublication = 'http://localhost:8080/rest-api/users/get/'+this.auth.getUser();
+  private _urlAddPublication = 'http://localhost:8080/rest-api/users/addPublication'
+  private _urlUpdatePublication = 'http://localhost:8080/rest-api/users/changePublication/';
+  private _urlremovePublication = 'http://localhost:8080/rest-api/users/removePublication/';
 
   public objString;
 
@@ -22,7 +25,7 @@ export class PublicationsService {
   }
 
   updatePublication(name: string, topic: string, publishedBy: string, year: string, id: string): Observable<any> {
-    this.objString = '{"name":"' + name + '","topic":"' + topic + '","publishedBy":"' + publishedBy + '","year":"' + year + '"}';
+    this.objString = '{"userName":"'+ this.auth.getUser() +'","name":"' + name + '","topic":"' + topic + '","publishedBy":"' + publishedBy + '","year":"' + year + '"}';
     console.log(JSON.parse(this.objString));
     return this.http.put<any>(this._urlUpdatePublication + id, JSON.parse(this.objString));
   }
@@ -32,6 +35,6 @@ export class PublicationsService {
   }
 
   removePublication(id: string): Observable<any> {
-    return this.http.put<any>(this._urlremovePublication + id, {})
+    return this.http.put<any>(this._urlremovePublication + id, JSON.parse('{"userName":"'+this.auth.getUser()+'"}'))
   }
 }

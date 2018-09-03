@@ -8,7 +8,7 @@ import { BioImageService } from '../Services/bio-image.service';
 export class BioImageComponent implements OnInit {
 
   userData = []
-  public imageURL = "../../assets/avatar.png";
+  public imageURL = "../../../assets/avatar.png";
   public name;
   fileToUpload: File = null;
   public bio;

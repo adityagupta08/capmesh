@@ -10,8 +10,9 @@ export class AuthService {
 
   setUser(user){
     this.user = user;
+    sessionStorage.setItem('userName',user)
   }
-  getUser(){
-    return this.user;
+  getUser():string{
+    return sessionStorage.getItem('userName')
   }
 }

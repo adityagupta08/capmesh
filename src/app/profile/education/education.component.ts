@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EducationService } from '../Services/education.service';
 import {NgForm} from '@angular/forms'
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-education',
@@ -21,7 +22,7 @@ export class EducationComponent implements OnInit {
   public yearOfPassing1;
   public strObj;
 
-  constructor(private educationService: EducationService) { }
+  constructor(private educationService: EducationService, private auth:AuthService) { }
 
   ngOnInit() {
     this.getEducation();
@@ -60,7 +61,7 @@ export class EducationComponent implements OnInit {
     this.universityName1 = comName;
     this.percentage1 = tPeriod;
     this.yearOfPassing1 = yop;
-    this.strObj =  '{"degreeName":"' + this.degreeName1 + '","university":"' + this.universityName1 + '","percentage":"' + this.percentage1+ '","yearOfPassing":"' + this.yearOfPassing1+ '"}';
+    this.strObj =  '{"userName":"'+ this.auth.getUser() +'","degreeName":"' + this.degreeName1 + '","university":"' + this.universityName1 + '","percentage":"' + this.percentage1+ '","yearOfPassing":"' + this.yearOfPassing1+ '"}';
     this.strObj = JSON.parse(this.strObj);
     this.educationService.addEducation(this.strObj).subscribe(data => this.userData =data);
     forms.resetForm();

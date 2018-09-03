@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExperienceService } from '../Services/experience.service';
 import { NgForm } from '@angular/forms'
+import { AuthService } from '../../auth.service';
 @Component({
   selector: 'app-experience',
   templateUrl: './experience.component.html',
@@ -19,7 +20,7 @@ export class ExperienceComponent implements OnInit {
 
   public strObj;
 
-  constructor(private experienceService: ExperienceService) { }
+  constructor(private experienceService: ExperienceService, private auth:AuthService) { }
 
   ngOnInit() {
     this.getExperience();
@@ -56,7 +57,7 @@ export class ExperienceComponent implements OnInit {
     this.designation1 = des;
     this.companyName1 = comName;
     this.timePeriod1 = tPeriod;
-    this.strObj = '{"designation":"' + this.designation1 + '","companyName":"' + this.companyName1 + '","timePeriod":"' + this.timePeriod1 + '"}';
+    this.strObj = '{"userName":"'+ this.auth.getUser() +'","designation":"' + this.designation1 + '","companyName":"' + this.companyName1 + '","timePeriod":"' + this.timePeriod1 + '"}';
     this.strObj = JSON.parse(this.strObj);
     this.experienceService.addExperience(this.strObj).subscribe(data => this.userData = data);
     form.resetForm();

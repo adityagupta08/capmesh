@@ -21,7 +21,7 @@
             <span><h4>Bio : {{data.profile.bio}}</h4></span>
             <span><h4>Email : {{data.email}}</h4></span>
             <span><h4>Mobile : {{data.mobile}}</h4></span>
-            <span><h4>DOB : {{data.dateOfBirth}}</h4></span>
+            <span><h4>DOB : {{data.dateOfBirth | slice:0:10}}</h4></span>
             <span><h4>Gender : {{data.gender}}</h4></span>
             <button *ngIf="this.connect">Connect</button>
           </div>
