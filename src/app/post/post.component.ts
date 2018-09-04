@@ -88,14 +88,14 @@ export class PostComponent implements OnInit {
       if (this.islike[i] == false) {
         this.islike[i] = !this.islike[i];
         ////  this.color="blue";
-        this.strObj = '{"userName":"saurabhgupta","postedBy":"' + uName + '","postId":"' + postId + '"}';//Need to Enter username here
+        this.strObj = '{"userName":"'+this.auth.getUser()+'","postedBy":"' + uName + '","postId":"' + postId + '"}';//Need to Enter username here
         this.linkedIn[0][i].likes.push(JSON.parse(this.strObj));
         this._service.addLike(JSON.parse(this.strObj)).subscribe((data: any) => { });
       }
       else if (this.islike[i] == true) {
         this.islike[i] = !this.islike[i];
         // this.color="black";
-        this.strObj = '{"userName":"saurabhgupta","postedBy":"' + uName + '","postId":"' + postId + '"}';//Need to Enter username here
+        this.strObj = '{"userName":"'+this.auth.getUser()+'","postedBy":"' + uName + '","postId":"' + postId + '"}';//Need to Enter username here
         this.linkedIn[0][i].likes.pop(JSON.parse(this.strObj));
         this._service.removeLike(JSON.parse(this.strObj)).subscribe((data: any) => { });
 
@@ -105,7 +105,9 @@ export class PostComponent implements OnInit {
   }
 
   likedetails(uName, postId) {
-    return this._service.fetchingLikes(uName, postId).subscribe((d) => { this.data = d });
+    return this._service.fetchingLikes(uName, postId).subscribe((d) => {
+      console.log(d);
+       this.data = d });
   }
 
   /* DisplayLikes(id: string) {
