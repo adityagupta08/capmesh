@@ -12,10 +12,10 @@ export class CertificationService {
 
   constructor(private http: HttpClient, private auth:AuthService) { }
 
-  private _urlGetCertification = 'http://localhost:8080/rest-api/users/get/'+this.auth.getUser();
-  private _urlAddCertification = 'http://localhost:8080/rest-api/users/addCertificate'
-  private _urlUpdateCertification = 'http://localhost:8080/rest-api/users/changeCertificate/';
-  private _urlremoveCertification = 'http://localhost:8080/rest-api/users/removeCertificate/';
+  private _urlGetCertification = 'http://10.102.55.85:8080/rest-api/users/get/'+this.auth.getUser();
+  private _urlAddCertification = 'http://10.102.55.85:8080/rest-api/users/addCertificate'
+  private _urlUpdateCertification = 'http://10.102.55.85:8080/rest-api/users/changeCertificate/';
+  private _urlremoveCertification = 'http://10.102.55.85:8080/rest-api/users/removeCertificate/';
 
   public objString;
 

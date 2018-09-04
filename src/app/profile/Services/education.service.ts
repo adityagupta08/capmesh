@@ -12,10 +12,10 @@ export class EducationService {
   
   constructor(private http: HttpClient, private auth:AuthService) { }
 
-  private _urlGetEducation = 'http://localhost:8080/rest-api/users/get/'+this.auth.getUser();
-  private _urlAddEducation = 'http://localhost:8080/rest-api/users/addEducation'
-  private _urlUpdateEducation = 'http://localhost:8080/rest-api/users/updateEducation/';
-  private _urlremoveEducation = 'http://localhost:8080/rest-api/users/removeEducation/'
+  private _urlGetEducation = 'http://10.102.55.85:8080/rest-api/users/get/'+this.auth.getUser();
+  private _urlAddEducation = 'http://10.102.55.85:8080/rest-api/users/addEducation'
+  private _urlUpdateEducation = 'http://10.102.55.85:8080/rest-api/users/updateEducation/';
+  private _urlremoveEducation = 'http://10.102.55.85:8080/rest-api/users/removeEducation/'
 
 
   public objString;

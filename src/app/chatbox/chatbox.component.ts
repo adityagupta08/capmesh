@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ChatService } from '../services/chat.service';
 import { PerfectScrollbarComponent,PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
+import { Ng2EmojiService } from 'ng2-emoji';
 
 
 @Component({
@@ -8,26 +9,37 @@ import { PerfectScrollbarComponent,PerfectScrollbarDirective } from 'ngx-perfect
   templateUrl: './chatbox.component.html',
   styleUrls: ['./chatbox.component.css']
 })
-export class ChatboxComponent implements OnInit {
+export class ChatboxComponent implements OnInit,OnDestroy {
 
   hasConversationsWithList = [];
   messagesBetweenUsers = [];
   newMessage = "";
-  timer;
-  currentUser = 106;
+  timerChats;
+  emojis: Array<string>;
+  // myMessageString;
+  timerConvos;
+  currentUser = sessionStorage.getItem('userName');
   otherUser = undefined;
 
   constructor(private chatService: ChatService) {
+    // this.myMessageString = 'Hello, how are you? :smile: It was fun at the bowling game the other day :joy:';
+    this.emojis = Ng2EmojiService.emojis;
     this.hasConversationsWith(this.currentUser);
   }
+
+ngOnDestroy(){
+  clearInterval(this.timerChats);
+  clearInterval(this.timerConvos);
+}
+
   ngOnInit() {
-    setInterval(() => {
+   this.timerConvos= setInterval(() => {
       this.hasConversationsWith(this.currentUser);
     }, 500)
   }
   //handleOnUserChatChange
   handleOnUserChatChange(otherUser) {
-    clearInterval(this.timer)
+    clearInterval(this.timerChats)
     this.otherUser = otherUser;
     this.messagesBetweenUsers = [];
     this.getConversationOf(this.otherUser);
@@ -36,7 +48,7 @@ export class ChatboxComponent implements OnInit {
   //handle sendMessage
   handleSendMessage() {
     console.log(this.newMessage);
-    let conversation = { "user1": this.currentUser, "user2": this.otherUser, "sender": this.currentUser, "content": this.newMessage };
+    let conversation = { "userName": this.currentUser, "receiver": this.otherUser, "content": this.newMessage };
     //  this.messagesBetweenUsers.push(conversation);
     this.addNewMessage(conversation);
     this.newMessage = "";
@@ -45,8 +57,8 @@ export class ChatboxComponent implements OnInit {
   //function to refresh userchats
   RefreshUserChats(otherUser) {
     console.log("timer start");
-    this.timer = setInterval(() => {
-      this.chatService.getConversationOf({ "user1": this.currentUser, "user2": otherUser }).subscribe((messageData: test) => {
+    this.timerChats = setInterval(() => {
+      this.chatService.getConversationOf({ "userName": this.currentUser, "receiver": otherUser }).subscribe((messageData: test) => {
         this.messagesBetweenUsers = [];
         this.messagesBetweenUsers = messageData.val;
       });
@@ -55,7 +67,7 @@ export class ChatboxComponent implements OnInit {
   }
   //function to fatech userlist that user  has conversation with
   hasConversationsWith(user) {
-    this.chatService.hasConversationsWith({ "user": user }).subscribe((userData: test) => {
+    this.chatService.hasConversationsWith({ "userName": user }).subscribe((userData: test) => {
       this.hasConversationsWithList = [];
       userData.val.map(conversation => {
         let content
@@ -73,8 +85,6 @@ export class ChatboxComponent implements OnInit {
         }
         this.hasConversationsWithList.push(userList);
         this.hasConversationsWithList.sort((a, b) => {
-          console.log("a: " + a);
-          console.log("b: " + b);
           if (a.timestamp > b.timestamp)
             return -1
           else if (a.timestamp < b.timestamp)
@@ -88,7 +98,7 @@ export class ChatboxComponent implements OnInit {
   }
   //function to retrive messages between two users
   getConversationOf(otherUser) {
-    this.chatService.getConversationOf({ "user1": this.currentUser, "user2": otherUser }).subscribe((messageData: test) => {
+    this.chatService.getConversationOf({ "userName": this.currentUser, "receiver": otherUser }).subscribe((messageData: test) => {
       this.messagesBetweenUsers = messageData.val;
     });
   }
@@ -109,6 +119,12 @@ export class ChatboxComponent implements OnInit {
         return false;
       }
     }
+  }
+
+  addEmoji(emoji:any){
+    console.log("add Emoji on "+ emoji);
+    this.newMessage= this.newMessage+":"+emoji+":";
+    console.log("new Message is  " +this.newMessage);
   }
 
 

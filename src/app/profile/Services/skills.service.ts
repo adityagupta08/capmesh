@@ -11,9 +11,9 @@ export class SkillsService {
   
   constructor(private http: HttpClient, private auth:AuthService) { }
 
-  private _urlGetSkills = 'http://localhost:8080/rest-api/users/get/'+this.auth.getUser();
-  private _urlAddSkills = 'http://localhost:8080/rest-api/users/addSkill/'
-  private _urlremoveSkills = 'http://localhost:8080/rest-api/users/deleteSkill/';
+  private _urlGetSkills = 'http://10.102.55.85:8080/rest-api/users/get/'+this.auth.getUser();
+  private _urlAddSkills = 'http://10.102.55.85:8080/rest-api/users/addSkill/'
+  private _urlremoveSkills = 'http://10.102.55.85:8080/rest-api/users/deleteSkill/';
 
   public objString;
 
