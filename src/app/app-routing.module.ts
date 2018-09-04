@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './auth.guard';
 import { ChatboxComponent } from './chatbox/chatbox.component';
+import { PostComponent } from './post/post.component';
 
 
 const routes: Routes = [
   { path: 'auth/:key', component: AuthComponent },
   { path: 'profile', component:ProfileComponent},
-  { path: 'chats', component:ChatboxComponent}
+  { path: 'chats', component:ChatboxComponent},
+  { path: 'home', component: PostComponent}
   // { path: 'dashboard', component: DashboardComponent },
   // { path: 'detail/:id', component: HeroDetailComponent },
   // { path: 'heroes', component: HeroesComponent }

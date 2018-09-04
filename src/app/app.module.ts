@@ -32,6 +32,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { Ng2EmojiModule } from 'ng2-emoji';
+import { PostComponent } from './post/post.component';
+import { SearchComponent } from './search/search.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -56,6 +58,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SkillsComponent,
     EndorsementComponent,
     ChatboxComponent,
+    PostComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
