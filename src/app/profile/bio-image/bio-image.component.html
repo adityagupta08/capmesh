@@ -15,7 +15,8 @@
           <label for="my-file-selector">
 <input type="file" (change)="changeImage($event.target.files)"></label>
           <div id="pdetail">
-            <span><h3>Name : <strong>{{data.name}}</strong></h3><a href="#myModalProfile" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal" (click)="fetch()">
+            <span><h3>Name : <strong>{{data.name}}</strong></h3>
+              <a href="#myModalProfile" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal" (click)="fetch()">
           <span class="glyphicon glyphicon-pencil"  ></span></a>
             </span>
             <span><h4>Bio : {{data.profile.bio}}</h4></span>

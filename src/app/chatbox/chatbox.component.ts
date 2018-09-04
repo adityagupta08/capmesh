@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ChatService } from '../services/chat.service';
 import { PerfectScrollbarComponent,PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import { Ng2EmojiService } from 'ng2-emoji';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -21,10 +22,11 @@ export class ChatboxComponent implements OnInit,OnDestroy {
   currentUser = sessionStorage.getItem('userName');
   otherUser = undefined;
 
-  constructor(private chatService: ChatService) {
+  constructor(private chatService: ChatService, private route:ActivatedRoute) {
     // this.myMessageString = 'Hello, how are you? :smile: It was fun at the bowling game the other day :joy:';
     this.emojis = Ng2EmojiService.emojis;
     this.hasConversationsWith(this.currentUser);
+    this.otherUser = this.route.snapshot.paramMap.get('userName')
   }
 
 ngOnDestroy(){
@@ -35,7 +37,10 @@ ngOnDestroy(){
   ngOnInit() {
    this.timerConvos= setInterval(() => {
       this.hasConversationsWith(this.currentUser);
-    }, 500)
+    }, 2000)
+    if(this.otherUser) {
+      this.handleOnUserChatChange(this.otherUser)
+    }
   }
   //handleOnUserChatChange
   handleOnUserChatChange(otherUser) {
@@ -63,7 +68,7 @@ ngOnDestroy(){
         this.messagesBetweenUsers = messageData.val;
       });
 
-    }, 500);
+    }, 2000);
   }
   //function to fatech userlist that user  has conversation with
   hasConversationsWith(user) {

@@ -20,6 +20,7 @@ export class ChatService {
    }
 
    addNewMessage(reqBody){
+     console.log(reqBody)
       return this.http.post(this.baseURL+"addChatsBetweenUsers",reqBody);
    }
 }

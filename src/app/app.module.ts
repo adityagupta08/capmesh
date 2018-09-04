@@ -34,6 +34,14 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { Ng2EmojiModule } from 'ng2-emoji';
 import { PostComponent } from './post/post.component';
 import { SearchComponent } from './search/search.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { MyNetworksComponent } from './connection/my-networks/my-networks.component';
+import { MyConnectionsComponent } from './connection/my-connections/my-connections.component';
+import { MyInvitationsComponent } from './connection/my-invitations/my-invitations.component';
+import { InvitationsReceivedComponent } from './connection/invitations-received/invitations-received.component';
+import { InvitationsSentComponent } from './connection/invitations-sent/invitations-sent.component';
+import { BlockListComponent } from './connection/block-list/block-list.component';
+import { ConnectionComponents } from "./app-routing.module";
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -60,6 +68,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ChatboxComponent,
     PostComponent,
     SearchComponent,
+
+    MyNetworksComponent,
+    MyConnectionsComponent,
+    MyInvitationsComponent,
+    InvitationsReceivedComponent,
+    InvitationsSentComponent,
+    ...ConnectionComponents,
+    BlockListComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +83,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FormsModule,
     HttpClientModule,
     PerfectScrollbarModule,
+    NgxSpinnerModule,
     Ng2EmojiModule.forRoot()
   ],
   providers: [
