@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
 import { AuthService } from '../../auth.service';
+import { ProfileService } from '../profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,9 @@ export class PublicationsService {
  
 
 
-  constructor(private http: HttpClient, private auth:AuthService) { }
+  constructor(private http: HttpClient, private auth:AuthService,private profile:ProfileService) { }
 
-  private _urlGetPublication = 'http://10.102.55.85:8080/rest-api/users/get/'+this.auth.getUser();
+  private _urlGetPublication = 'http://10.102.55.85:8080/rest-api/users/get/';
   private _urlAddPublication = 'http://10.102.55.85:8080/rest-api/users/addPublication'
   private _urlUpdatePublication = 'http://10.102.55.85:8080/rest-api/users/changePublication/';
   private _urlremovePublication = 'http://10.102.55.85:8080/rest-api/users/removePublication/';
@@ -21,7 +22,7 @@ export class PublicationsService {
   public objString;
 
   getPublication(): Observable<User[]> {
-    return this.http.get<User[]>(this._urlGetPublication);
+    return this.http.get<User[]>(this._urlGetPublication+""+this.profile.getUser());
   }
 
   updatePublication(name: string, topic: string, publishedBy: string, year: string, id: string): Observable<any> {

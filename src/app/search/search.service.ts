@@ -10,12 +10,12 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
   getSearchResults(query: string): Observable<any[]> {
-    return this.http.patch<any[]>("http://10.102.55.85:8080/rest-api/users/search/people", {
+    return this.http.patch<any[]>("http://localhost:8080/rest-api/users/search/people", {
       "query": query
     });
   }
 
   getProfile(userName: string): Observable<any[]> {
-    return this.http.get<any[]>("http://10.102.55.85:8080/rest-api/users/get/"+userName);
+    return this.http.get<any[]>("http://localhost:8080/rest-api/users/get/"+userName);
   }
 }

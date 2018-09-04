@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
 import { AuthService } from '../../auth.service';
+import { ProfileService } from '../profile.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,9 +11,9 @@ export class CertificationService {
 
   
 
-  constructor(private http: HttpClient, private auth:AuthService) { }
+  constructor(private http: HttpClient, private auth:AuthService, private profile:ProfileService) { }
 
-  private _urlGetCertification = 'http://10.102.55.85:8080/rest-api/users/get/'+this.auth.getUser();
+  private _urlGetCertification = 'http://10.102.55.85:8080/rest-api/users/get/';
   private _urlAddCertification = 'http://10.102.55.85:8080/rest-api/users/addCertificate'
   private _urlUpdateCertification = 'http://10.102.55.85:8080/rest-api/users/changeCertificate/';
   private _urlremoveCertification = 'http://10.102.55.85:8080/rest-api/users/removeCertificate/';
@@ -20,7 +21,7 @@ export class CertificationService {
   public objString;
 
   getCertification(): Observable<User[]> {
-    return this.http.get<User[]>(this._urlGetCertification);
+    return this.http.get<User[]>(this._urlGetCertification+""+this.profile.getUser());
   }
 
   updateCertification(name: string, issuedBy: string, year: string, id: string): Observable<any> {

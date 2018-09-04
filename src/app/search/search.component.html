@@ -14,7 +14,7 @@
       </ul>-->
       <ul *ngIf="result.length; else try" class="dropdown-menu " id="searchresult" style="right:-2cm;left:-5cm;" >
         <li *ngFor="let r of result, let i = index">
-          <span>{{r.profile.image}}</span><span id><a (click)="getProfile(i)">{{r.name}}</a>
+          <span>{{r.profile.image}}</span><span id><a href='profile/{{r.userName}}'>{{r.name}}</a>
           <small>{{r.profile.bio}}</small></span>
         </li>
       </ul>

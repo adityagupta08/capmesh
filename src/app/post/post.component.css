@@ -6,7 +6,9 @@
     
   }
   #postButton{ 
-    margin-left:650px;
+    position:absolute;
+    right:130px;
+    margin-top:5px;
    }
  
   #comment{

@@ -3,15 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
 import { AuthService } from '../../auth.service';
+import { ProfileService } from '../profile.service';
 @Injectable({
   providedIn: 'root'
 })
 export class BioImageService {
 
    
-  constructor(private http:HttpClient, private auth:AuthService) { }
+  constructor(private http:HttpClient, private auth:AuthService, private profile:ProfileService ) { }
 
-  private _urlGetProfile = 'http://10.102.55.85:8080/rest-api/users/get/'+this.auth.getUser();
+  private _urlGetProfile = 'http://10.102.55.85:8080/rest-api/users/get/';
    private _urlUpdateName = 'http://10.102.55.85:8080/rest-api/users/updateName';
    private _urlUpdateBio = 'http://10.102.55.85:8080/rest-api/users/updateBio';
    private _urlUpdateEmail = 'http://10.102.55.85:8080/rest-api/users/updateEmail';
@@ -20,7 +21,7 @@ export class BioImageService {
     public objString;
 
   getBio(): Observable<User[]>{
-    return this.http.get<User[]>(this._urlGetProfile);
+    return this.http.get<User[]>(this._urlGetProfile+""+this.profile.getUser());
   }
 
   updateName(name: string): Observable<any> {

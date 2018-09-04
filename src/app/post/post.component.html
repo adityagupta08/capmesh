@@ -1,6 +1,3 @@
-<app-search>
-</app-search>
-
 <div class="container">
   <div class="row">
     <div class="col-sm-3">
@@ -30,10 +27,12 @@
           <div class="panel-body form-group">
             <textarea class="form-control" aria-setsize="fixed" rows="4" cols="40" name="text" [(ngModel)]="createPosts" #CreatePosts="ngModel"
               placeholder="What's on your mind..."></textarea>
+              <input type="button" id="postButton" class="btn btn-primary " value="POST" (click)="addPosts(CreatePosts.value)" />
+              <br/>
           </div>
-          <div class="panel-footer">
-            <input type="button" id="postButton" class="btn btn-primary " value="POST" (click)="addPosts(CreatePosts.value)" />
-          </div>
+          <!-- <div class="panel-footer">
+           
+          </div> -->
         </div>
 
         <!--===================Interpolation of Post==================================== -->

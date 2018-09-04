@@ -15,5 +15,6 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if(this.auth.getUser())
       return true
+    window.location.href = 'http://10.102.55.85:3000'
   }
 }

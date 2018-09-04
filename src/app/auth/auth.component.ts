@@ -16,7 +16,7 @@ export class AuthComponent implements OnInit {
     let user = this.route.snapshot.paramMap.get('key')
     this.auth.setUser(user);
     console.log(user)
-    this.Route.navigate(['/profile'])
+    this.Route.navigate(['home'])
   }
 
 }

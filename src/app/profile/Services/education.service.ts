@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
 import { AuthService } from '../../auth.service';
+import { ProfileService } from '../profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,9 @@ import { AuthService } from '../../auth.service';
 export class EducationService {
 
   
-  constructor(private http: HttpClient, private auth:AuthService) { }
+  constructor(private http: HttpClient, private auth:AuthService, private profile:ProfileService) { }
 
-  private _urlGetEducation = 'http://10.102.55.85:8080/rest-api/users/get/'+this.auth.getUser();
+  private _urlGetEducation = 'http://10.102.55.85:8080/rest-api/users/get/';
   private _urlAddEducation = 'http://10.102.55.85:8080/rest-api/users/addEducation'
   private _urlUpdateEducation = 'http://10.102.55.85:8080/rest-api/users/updateEducation/';
   private _urlremoveEducation = 'http://10.102.55.85:8080/rest-api/users/removeEducation/'
@@ -21,7 +22,7 @@ export class EducationService {
   public objString;
 
   getEducation(): Observable<User[]> {
-    return this.http.get<User[]>(this._urlGetEducation);
+    return this.http.get<User[]>(this._urlGetEducation+""+this.profile.getUser());
   }
 
   updateEducation(degreeName: string, universityName: string, percentage: string, yearOfPassing:number, id: string): Observable<any> {

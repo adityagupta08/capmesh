@@ -11,9 +11,10 @@ import { PostComponent } from './post/post.component';
 
 const routes: Routes = [
   { path: 'auth/:key', component: AuthComponent },
-  { path: 'profile', component:ProfileComponent},
-  { path: 'chats', component:ChatboxComponent},
-  { path: 'home', component: PostComponent}
+  { path: 'profile', component:ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'profile/:userName', component:ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'chats', component:ChatboxComponent, canActivate: [AuthGuard]},
+  { path: 'home', component: PostComponent, canActivate: [AuthGuard]}
   // { path: 'dashboard', component: DashboardComponent },
   // { path: 'detail/:id', component: HeroDetailComponent },
   // { path: 'heroes', component: HeroesComponent }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
 import { AuthService } from '../../auth.service';
+import { ProfileService } from '../profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,9 @@ import { AuthService } from '../../auth.service';
 export class ExperienceService {
 
   
-  constructor(private http: HttpClient, private auth:AuthService) { }
+  constructor(private http: HttpClient, private auth:AuthService, private profile:ProfileService) { }
 
-  private _urlGetExperience = 'http://10.102.55.85:8080/rest-api/users/get/'+this.auth.getUser();
+  private _urlGetExperience = 'http://10.102.55.85:8080/rest-api/users/get/';
   private _urlAddExperience = 'http://10.102.55.85:8080/rest-api/users/addExperience'
   private _urlUpdateExperience = 'http://10.102.55.85:8080/rest-api/users/updateExperience/';
   private _urlremoveExperience = 'http://10.102.55.85:8080/rest-api/users/removeExperience/';
@@ -20,7 +21,7 @@ export class ExperienceService {
   public objString;
 
   getExperience(): Observable<User[]> {
-    return this.http.get<User[]>(this._urlGetExperience);
+    return this.http.get<User[]>(this._urlGetExperience+""+this.profile.getUser());
   }
 
   updateExperienceDatabase(designation: string, companyName: string, timePeriod: string, id: string): Observable<any> {

@@ -3,22 +3,23 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
 import { AuthService } from '../../auth.service';
+import { ProfileService } from '../profile.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkillsService {
   
-  constructor(private http: HttpClient, private auth:AuthService) { }
+  constructor(private http: HttpClient, private auth:AuthService, private profile:ProfileService) { }
 
-  private _urlGetSkills = 'http://10.102.55.85:8080/rest-api/users/get/'+this.auth.getUser();
+  private _urlGetSkills = 'http://10.102.55.85:8080/rest-api/users/get/';
   private _urlAddSkills = 'http://10.102.55.85:8080/rest-api/users/addSkill/'
   private _urlremoveSkills = 'http://10.102.55.85:8080/rest-api/users/deleteSkill/';
 
   public objString;
 
   getSkills(): Observable<User[]> {
-    return this.http.get<User[]>(this._urlGetSkills);
+    return this.http.get<User[]>(this._urlGetSkills+""+this.profile.getUser());
   }
 
   addSkills(skillObj:string): Observable<any> {
