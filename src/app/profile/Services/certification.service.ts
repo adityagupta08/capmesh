@@ -13,10 +13,10 @@ export class CertificationService {
 
   constructor(private http: HttpClient, private auth:AuthService, private profile:ProfileService) { }
 
-  private _urlGetCertification = 'http://10.102.55.85:8080/rest-api/users/get/';
-  private _urlAddCertification = 'http://10.102.55.85:8080/rest-api/users/addCertificate'
-  private _urlUpdateCertification = 'http://10.102.55.85:8080/rest-api/users/changeCertificate/';
-  private _urlremoveCertification = 'http://10.102.55.85:8080/rest-api/users/removeCertificate/';
+  private _urlGetCertification = 'http://10.102.55.73:8080/rest-api/users/get/';
+  private _urlAddCertification = 'http://10.102.55.73:8080/rest-api/users/addCertificate'
+  private _urlUpdateCertification = 'http://10.102.55.73:8080/rest-api/users/changeCertificate/';
+  private _urlremoveCertification = 'http://10.102.55.73:8080/rest-api/users/removeCertificate/';
 
   public objString;
 

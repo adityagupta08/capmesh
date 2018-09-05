@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { BioImageService } from '../Services/bio-image.service';
+import { AuthService } from '../../auth.service';
+import { ConnectionService } from '../../connection/connection.service';
 @Component({
   selector: 'app-bio-image',
   templateUrl: './bio-image.component.html',
@@ -8,14 +10,17 @@ import { BioImageService } from '../Services/bio-image.service';
 export class BioImageComponent implements OnInit {
 
   userData = []
+  public isEditable = true;
+  public connectionBtn = true;
+  public blockBtn = true;
   public imageURL = "../../../assets/avatar.png";
   public name;
   fileToUpload: File = null;
   public bio;
   public emailid;
   public mobile;
-  public connect = false;
-  constructor(private bioImageService: BioImageService) {
+  //public connect = false;
+  constructor(private bioImageService: BioImageService, private auth: AuthService, private conn: ConnectionService) {
     //this.imageURL = cloudinary.cloudinaryInstance.image('koala')['src'];
   }
 
@@ -26,7 +31,7 @@ export class BioImageComponent implements OnInit {
   }
   getBio() {
     this.bioImageService.getBio().subscribe(data => this.userData.push(data[0]));
-    console.log(this.userData)
+    console.log(this.userData);
   }
 
   // getConnect(){
@@ -68,6 +73,19 @@ export class BioImageComponent implements OnInit {
     reader.readAsDataURL(this.fileToUpload);
   }
 
+  public sendConnectionRequest(receiver) {
+    let sender = this.auth.getUser();
+    console.log(sender, receiver)
+    this.conn.sendConnectionRequest(sender, receiver).subscribe(data => {
+      this.connectionBtn = false;
+    })
+  }
 
+  public blockUser(blockee) {
+    let user = this.auth.getUser()
+    this.conn.blockConnection(user, blockee).subscribe(data => {
+      this.blockBtn = false;
+    })
+  }
 
 }

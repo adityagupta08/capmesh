@@ -13,10 +13,10 @@ export class ExperienceService {
   
   constructor(private http: HttpClient, private auth:AuthService, private profile:ProfileService) { }
 
-  private _urlGetExperience = 'http://10.102.55.85:8080/rest-api/users/get/';
-  private _urlAddExperience = 'http://10.102.55.85:8080/rest-api/users/addExperience'
-  private _urlUpdateExperience = 'http://10.102.55.85:8080/rest-api/users/updateExperience/';
-  private _urlremoveExperience = 'http://10.102.55.85:8080/rest-api/users/removeExperience/';
+  private _urlGetExperience = 'http://10.102.55.73:8080/rest-api/users/get/';
+  private _urlAddExperience = 'http://10.102.55.73:8080/rest-api/users/addExperience'
+  private _urlUpdateExperience = 'http://10.102.55.73:8080/rest-api/users/updateExperience/';
+  private _urlremoveExperience = 'http://10.102.55.73:8080/rest-api/users/removeExperience/';
 
   public objString;
 

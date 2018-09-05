@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EndorsementService } from '../Services/endorsement.service'
 import { NgForm } from '@angular/forms'
+import { AuthService } from '../../auth.service';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-endorsement',
@@ -9,7 +11,7 @@ import { NgForm } from '@angular/forms'
 })
 export class EndorsementComponent implements OnInit {
 
-  constructor(private endorsementService: EndorsementService) { }
+  constructor(private endorsementService: EndorsementService, private auth:AuthService, private profile:ProfileService) { }
 
   public userData = [];
   public endorsedName1;
@@ -35,7 +37,7 @@ export class EndorsementComponent implements OnInit {
       this.endorsedName1 = des;
       this.endorsedComment1 = comName;
       console.log(comName, this.endorsedComment1)
-      this.strObj = '{"endorsedBy":"' + this.endorsedName1 + '","comment":"' + this.endorsedComment1 + '"}';
+      this.strObj = '{"user":"' + this.profile.getUser() + '","comment":"' + this.endorsedComment1 + '","userName":"' + this.auth.getUser() + '"}';
       this.strObj = JSON.parse(this.strObj);
       this.endorsementService.addEndorsement(this.strObj).subscribe(data => this.userData = data);
       form.resetForm();

@@ -12,11 +12,11 @@ export class BioImageService {
    
   constructor(private http:HttpClient, private auth:AuthService, private profile:ProfileService ) { }
 
-  private _urlGetProfile = 'http://10.102.55.85:8080/rest-api/users/get/';
-   private _urlUpdateName = 'http://10.102.55.85:8080/rest-api/users/updateName';
-   private _urlUpdateBio = 'http://10.102.55.85:8080/rest-api/users/updateBio';
-   private _urlUpdateEmail = 'http://10.102.55.85:8080/rest-api/users/updateEmail';
-   private _urlUpdateMobile = 'http://10.102.55.85:8080/rest-api/users/updateMobile';
+  private _urlGetProfile = 'http://10.102.55.73:8080/rest-api/users/get/';
+   private _urlUpdateName = 'http://10.102.55.73:8080/rest-api/users/updateName';
+   private _urlUpdateBio = 'http://10.102.55.73:8080/rest-api/users/updateBio';
+   private _urlUpdateEmail = 'http://10.102.55.73:8080/rest-api/users/updateEmail';
+   private _urlUpdateMobile = 'http://10.102.55.73:8080/rest-api/users/updateMobile';
 
     public objString;
 

@@ -8,7 +8,7 @@
 <div class="alert ">
   <div id="skills">
     <h3>Skills
-      <span><a href="#myModalSkill" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal">
+      <span *ngIf="this.auth.getUser() == userData[0].userName"><a href="#myModalSkill" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal">
           <span class="glyphicon glyphicon-plus" ></span></a>
       </span>
     </h3>
@@ -55,7 +55,7 @@
             <div *ngFor="let data of userData[0].profile.skills">
               <span><h4>{{data}}</h4>
             
-              <button class="btn btn-default btn-sm btn pull-right" (click)="removeSkills(data)">
+              <button class="btn btn-default btn-sm btn pull-right" *ngIf="this.auth.getUser() == userData[0].userName" (click)="removeSkills(data)">
                 <span class="glyphicon glyphicon-trash"></span></button>
 
               </span>

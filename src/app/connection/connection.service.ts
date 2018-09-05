@@ -16,7 +16,7 @@ import { AuthService } from '../auth.service';
   providedIn: 'root'
 })
 export class ConnectionService {
-  baseUrl = "http://10.102.55.85:8080/rest-api/user"
+  baseUrl = "http://10.102.55.73:8080/rest-api/user"
   constructor(private http: HttpClient, private auth:AuthService) { }
 
   /**
@@ -200,8 +200,8 @@ export class ConnectionService {
    * @returns {Observable<Object>} result returned from the server
   */
   sendConnectionRequest(sender: String,receiver:String):Observable<Object>{
-    let url = this.baseUrl + '/connect';
-    let body = { "sender": sender,"receiver":receiver};
+    let url = this.baseUrl + '/send-invitation';
+    let body = { "user": sender,"receiver":receiver};
     return this.http.post(url, body);
   }
 

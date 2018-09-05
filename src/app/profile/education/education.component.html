@@ -78,8 +78,8 @@
      <a data-toggle="collapse" href="#bodyEdu" class="btn pull-right">
          <span class="glyphicon glyphicon-th-list"></span>
       </a>
-    <span><a href="#myModalEdu" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal">
-          <span class="glyphicon glyphicon-plus" ></span></a>
+    <span><a href="#myModalEdu" class="btn btn-default btn-sm" class="btn pull-right" *ngIf="this.auth.getUser() == userData[0].userName" data-toggle="modal">
+          <span class="glyphicon glyphicon-plus"  ></span></a>
     </span>
   </h3>
     <div id="bodyEdu" class="card-body" class="collapse">
@@ -155,10 +155,10 @@
           <div *ngFor="let data of userData[0].profile.education.reverse()">
             <span><h4>Degree :  {{data.degreeName}} </h4></span>
             <div>
-              <span><button class="btn btn-default btn-sm" class="btn pull-right" (click)=removeEducation(data.educationId)><span class="glyphicon glyphicon-trash"> </span></button>
+              <span><button class="btn btn-default btn-sm" class="btn pull-right" *ngIf="this.auth.getUser() == userData[0].userName" (click)=removeEducation(data.educationId)><span class="glyphicon glyphicon-trash"> </span></button>
               </span>
               <h3>
-                <button type="button" data-target="#myModaleditEdu" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal"
+                <button type="button" data-target="#myModaleditEdu" *ngIf="this.auth.getUser() == userData[0].userName" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal"
                   (click)="updateEducation(data.educationId)">
             <!--<span><a href="#myModalEdu" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal">-->
           <span class="glyphicon glyphicon-pencil" ></span></button>

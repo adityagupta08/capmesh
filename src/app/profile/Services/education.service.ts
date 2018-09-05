@@ -13,10 +13,10 @@ export class EducationService {
   
   constructor(private http: HttpClient, private auth:AuthService, private profile:ProfileService) { }
 
-  private _urlGetEducation = 'http://10.102.55.85:8080/rest-api/users/get/';
-  private _urlAddEducation = 'http://10.102.55.85:8080/rest-api/users/addEducation'
-  private _urlUpdateEducation = 'http://10.102.55.85:8080/rest-api/users/updateEducation/';
-  private _urlremoveEducation = 'http://10.102.55.85:8080/rest-api/users/removeEducation/'
+  private _urlGetEducation = 'http://10.102.55.73:8080/rest-api/users/get/';
+  private _urlAddEducation = 'http://10.102.55.73:8080/rest-api/users/addEducation'
+  private _urlUpdateEducation = 'http://10.102.55.73:8080/rest-api/users/updateEducation/';
+  private _urlremoveEducation = 'http://10.102.55.73:8080/rest-api/users/removeEducation/'
 
 
   public objString;

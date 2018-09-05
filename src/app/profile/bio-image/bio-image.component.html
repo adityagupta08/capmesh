@@ -17,14 +17,15 @@
           <div id="pdetail">
             <span><h3>Name : <strong>{{data.name}}</strong></h3>
               <a href="#myModalProfile" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal" (click)="fetch()">
-          <span class="glyphicon glyphicon-pencil"  ></span></a>
+          <span class="glyphicon glyphicon-pencil" *ngIf="data.userName == this.auth.getUser()" ></span></a>
             </span>
             <span><h4>Bio : {{data.profile.bio}}</h4></span>
             <span><h4>Email : {{data.email}}</h4></span>
             <span><h4>Mobile : {{data.mobile}}</h4></span>
             <span><h4>DOB : {{data.dateOfBirth | slice:0:10}}</h4></span>
-            <span><h4>Gender : {{data.gender}}</h4></span>
-            <button *ngIf="this.connect">Connect</button>
+            <span><h4>Gender : {{data.gender}}</h4></span><br/>
+            <button class="btn btn-success" *ngIf="data.userName != this.auth.getUser()" [disabled]="!connectionBtn" (click)="sendConnectionRequest(data.userName)">Connect</button>&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-warning" *ngIf="data.userName != this.auth.getUser()" [disabled]="!blockBtn" (click)="blockUser(data.userName)">Block</button>
           </div>
         </div>
       </div>

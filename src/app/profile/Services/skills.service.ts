@@ -12,9 +12,9 @@ export class SkillsService {
   
   constructor(private http: HttpClient, private auth:AuthService, private profile:ProfileService) { }
 
-  private _urlGetSkills = 'http://10.102.55.85:8080/rest-api/users/get/';
-  private _urlAddSkills = 'http://10.102.55.85:8080/rest-api/users/addSkill/'
-  private _urlremoveSkills = 'http://10.102.55.85:8080/rest-api/users/deleteSkill/';
+  private _urlGetSkills = 'http://10.102.55.73:8080/rest-api/users/get/';
+  private _urlAddSkills = 'http://10.102.55.73:8080/rest-api/users/addSkill/'
+  private _urlremoveSkills = 'http://10.102.55.73:8080/rest-api/users/deleteSkill/';
 
   public objString;
 

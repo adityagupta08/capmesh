@@ -65,7 +65,7 @@
       </a>
 
       <span><a href="#myModal" data-target="#myModal" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal">
-          <span class="glyphicon glyphicon-plus" ></span></a>
+          <span class="glyphicon glyphicon-plus" *ngIf="this.auth.getUser() == userData[0].userName"></span></a>
       </span>
     </h3>
     <div id="bodyExp" class="card-body"  class="collapse">
@@ -131,11 +131,11 @@
         <!--<span class="visually-hidden">designation</span>-->
         <div *ngIf="userData.length">
           <div *ngFor="let index of userData[0].profile.experience.reverse()">
-            <span><h4>Designation :  {{index.designation}}</h4></span><span><button class="btn btn-danger btn-sm" class="btn pull-right" (click)=removeExperience(index.experienceId)><span class="glyphicon glyphicon-trash"> </span></button>
+            <span><h4>Designation :  {{index.designation}}</h4></span><span><button class="btn btn-danger btn-sm" *ngIf="this.auth.getUser() == userData[0].userName" class="btn pull-right" (click)=removeExperience(index.experienceId)><span class="glyphicon glyphicon-trash"> </span></button>
             </span>
             <span>
-          <button type="button" data-target="#myModaleditExp" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal" (click)="updateExperience(index.experienceId)">
-          <span class="glyphicon glyphicon-pencil"></span>
+          <button type="button" *ngIf="this.auth.getUser() == userData[0].userName" data-target="#myModaleditExp" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal" (click)="updateExperience(index.experienceId)">
+          <span class="glyphicon glyphicon-pencil" ></span>
             </button>
             </span>&nbsp;
             

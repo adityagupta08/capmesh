@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http'
   providedIn: 'root'
 })
 export class ChatService {
-  baseURL = "http://10.102.55.85:8080/rest-api/chats/"
+  baseURL = "http://10.102.55.73:8080/rest-api/chats/"
 
   
 

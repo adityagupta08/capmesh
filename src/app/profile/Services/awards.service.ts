@@ -13,10 +13,10 @@ export class AwardsService {
 
   constructor(private http: HttpClient, private auth:AuthService, private profile:ProfileService) { }
 
-  private _urlGetAwards = 'http://10.102.55.85:8080/rest-api/users/get/';
-  private _urlAddAward = 'http://10.102.55.85:8080/rest-api/users/addAward'
-  private _urlUpdateAward = 'http://10.102.55.85:8080/rest-api/users/changeAward/';
-  private _urlremoveAward = 'http://10.102.55.85:8080/rest-api/users/removeAward/';
+  private _urlGetAwards = 'http://10.102.55.73:8080/rest-api/users/get/';
+  private _urlAddAward = 'http://10.102.55.73:8080/rest-api/users/addAward'
+  private _urlUpdateAward = 'http://10.102.55.73:8080/rest-api/users/changeAward/';
+  private _urlremoveAward = 'http://10.102.55.73:8080/rest-api/users/removeAward/';
 
   public objString;
 

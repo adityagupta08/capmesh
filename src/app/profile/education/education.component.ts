@@ -11,6 +11,7 @@ import { AuthService } from '../../auth.service';
 export class EducationComponent implements OnInit {
 
   public userData = [];
+  public isEditable = true;
   public degreeName;
   public universityName;
   public percentage;

@@ -14,10 +14,10 @@ export class PublicationsService {
 
   constructor(private http: HttpClient, private auth:AuthService,private profile:ProfileService) { }
 
-  private _urlGetPublication = 'http://10.102.55.85:8080/rest-api/users/get/';
-  private _urlAddPublication = 'http://10.102.55.85:8080/rest-api/users/addPublication'
-  private _urlUpdatePublication = 'http://10.102.55.85:8080/rest-api/users/changePublication/';
-  private _urlremovePublication = 'http://10.102.55.85:8080/rest-api/users/removePublication/';
+  private _urlGetPublication = 'http://10.102.55.73:8080/rest-api/users/get/';
+  private _urlAddPublication = 'http://10.102.55.73:8080/rest-api/users/addPublication'
+  private _urlUpdatePublication = 'http://10.102.55.73:8080/rest-api/users/changePublication/';
+  private _urlremovePublication = 'http://10.102.55.73:8080/rest-api/users/removePublication/';
 
   public objString;
 

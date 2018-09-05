@@ -9,7 +9,7 @@ export class ProfileService {
 
   constructor(private http:HttpClient) { }
 
-  public profileURL = 'http://10.102.55.85:8080/rest-api/users/get/';
+  public profileURL = 'http://10.102.55.73:8080/rest-api/users/get/';
   user:string
   public getUserDetails(userName):Observable<any[]>{
     return this.http.get<any[]>(this.profileURL+userName);

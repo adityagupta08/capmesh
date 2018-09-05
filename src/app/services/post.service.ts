@@ -10,13 +10,13 @@ import { AuthService } from '../auth.service';
 })
 export class PostService {
 
-  public _urlPosts = 'http://10.102.55.85:8080/rest-api/users/post/load'
-  public _urlCreate = 'http://10.102.55.85:8080/rest-api/users/create/post';
-  public _urlLikePost = 'http://10.102.55.85:8080/rest-api/users/post/like';
-  public _urlUnLikePost = 'http://10.102.55.85:8080/rest-api/users/post/unlike';
+  public _urlPosts = 'http://10.102.55.73:8080/rest-api/users/post/load'
+  public _urlCreate = 'http://10.102.55.73:8080/rest-api/users/create/post';
+  public _urlLikePost = 'http://10.102.55.73:8080/rest-api/users/post/like';
+  public _urlUnLikePost = 'http://10.102.55.73:8080/rest-api/users/post/unlike';
 
-  public _urlEditPost = 'http://10.102.55.85:8080/rest-api/users/edit/post/';
-  public _urlDeletePost = 'http://10.102.55.85:8080/rest-api/users/delete/posts/';
+  public _urlEditPost = 'http://10.102.55.73:8080/rest-api/users/edit/post/';
+  public _urlDeletePost = 'http://10.102.55.73:8080/rest-api/users/delete/posts/';
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
@@ -38,7 +38,7 @@ export class PostService {
   }
 
    fetchingLikes(pName,pId):Observable<IPost[]>{
-   return this.http.get<IPost[]>('http://10.102.55.85:8080/rest-api/users/post/getLikesdetails/'+pName+'/'+pId)
+   return this.http.get<IPost[]>('http://10.102.55.73:8080/rest-api/users/post/getLikesdetails/'+pName+'/'+pId)
 }
 
   editPosts(postId,value): Observable<any[]> {
@@ -50,7 +50,7 @@ deletePosts(postId){
 }
 
   postComment(username,postid,data):Observable<IPost[]>{ 
-    var result =  this.http.put<IPost[]>('http://10.102.55.85:8080/rest-api/users/post/updateComments/'+username+'/'+postid,data);
+    var result =  this.http.put<IPost[]>('http://10.102.55.73:8080/rest-api/users/post/updateComments/'+username+'/'+postid,data);
     //console.log(result);
     return result;
   }

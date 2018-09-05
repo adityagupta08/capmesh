@@ -12,7 +12,7 @@
         <a data-toggle="collapse" href="#bodyPublic" class="btn pull-right">
          <span class="glyphicon glyphicon-th-list"></span>
       </a>
-        <span><a href="#myModalPublic" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal">
+        <span *ngIf="this.auth.getUser() == userData[0].userName"><a href="#myModalPublic" class="btn btn-default btn-sm" class="btn pull-right" data-toggle="modal">
           <span class="glyphicon glyphicon-plus" ></span></a>
         </span>
       </h3>
@@ -74,10 +74,10 @@
             <div *ngFor="let data of userData[0].profile.accomplishment.publications.reverse()">
               <span><h4>Name :  {{data.name}}</h4></span>
               <div>
-                <span><button type="button" class="btn btn-default btn-sm" class="btn pull-right" (click)=removePublication(data.publicationId)>  <span class="glyphicon glyphicon-trash"> </span></button>
+                <span><button *ngIf="this.auth.getUser() == userData[0].userName" type="button" class="btn btn-default btn-sm" class="btn pull-right" (click)=removePublication(data.publicationId)>  <span class="glyphicon glyphicon-trash"> </span></button>
                 </span>
                 <span>
-          <button type="button" class="btn btn-default btn-sm" class="btn pull-right" data-target="#myModaleditPubli" data-toggle="modal" (click)="updatePublication(data.publicationId)">
+          <button type="button" *ngIf="this.auth.getUser() == userData[0].userName" class="btn btn-default btn-sm" class="btn pull-right" data-target="#myModaleditPubli" data-toggle="modal" (click)="updatePublication(data.publicationId)">
           <span class="glyphicon glyphicon-pencil"></span>
                 </button>
                 </span>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SkillsService } from '../Services/skills.service';
 import { NgForm } from '@angular/forms'
+import { AuthService } from '../../auth.service';
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.component.html',
@@ -11,7 +12,7 @@ export class SkillsComponent implements OnInit {
   public userData = [];
   public skillName1 = '';
   public strObj;
-  constructor(private skillsService: SkillsService) { }
+  constructor(private skillsService: SkillsService, private auth:AuthService) { }
 
   ngOnInit() {
     this.getSkills();
