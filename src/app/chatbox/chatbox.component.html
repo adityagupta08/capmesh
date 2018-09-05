@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div class="col-xs-4">
+  <div class="col-xs-4" >
     <div class="panel panel-primary">
       <div class="panel-heading clearfix">
         {{currentUser}}'s chat history
@@ -13,7 +13,8 @@
                 class="img-circle">
             </div>
             <div class="col-xs-8">
-              <strong>{{conversation.participant}}</strong><br/>
+              <strong>{{conversation.participant}}</strong>
+              <br/>
               <p class="text-muted lst-msg">{{conversation.sender}}:{{conversation.content}}</p>
             </div>
           </div>
@@ -35,13 +36,25 @@
             <h1 style="margin-top:300px">please select a conversation</h1>
           </div>
           <div *ngIf="otherUser!=undefined" #scrollMe [scrollTop]="scrollMe.scrollHeight" style="overflow-x: hidden; overflow-y: scroll; max-width: 900px; height: 680px;">
-            <div *ngFor="let message of messagesBetweenUsers">
-              <div *ngIf="isCurrentUser(message.sender)==true" class="row">
-                <span style="margin-right:50px;margin-top:10px;padding-left:10px;padding-right:10px;margin-bottom:10px" class="talk-bubble-right pull-right border"><p [innerHTML]="message.content | emojis"></p></span>
+            <div *ngFor="let message of messagesBetweenUsers" class="container" style="width: 95%">
+              <!-- <div *ngIf="isCurrentUser(message.sender)==true" class="row" style="background-color:aqua">
+                <span style="margin-right:50px;margin-top:10px;padding-left:10px;padding-right:10px;margin-bottom:10px" class="talk-bubble-right pull-right right border"><p [innerHTML]="message.content | emojis"></p></span>
               </div>
               <div *ngIf="isCurrentUser(message.sender)==false" class="row">
                 <span style="margin-left:50px;margin-top:10px;padding-left:10px;padding-right:10px;margin-bottom:10px" class="talk-bubble-left pull-left border"><p [innerHTML]="message.content | emojis"></p></span>
+              </div> -->
+              <div  *ngIf="isCurrentUser(message.sender)==true">
+                <span style="width:100%">
+                  <p  class="float-right border talk-bubble-right" [innerHTML]="message.content | emojis"></p>
+                </span>
               </div>
+              <div  *ngIf="isCurrentUser(message.sender)==false">
+                <span style="width:100%" >
+                  <p class="float-left border talk-bubble-left " [innerHTML]="message.content | emojis"></p>
+                </span>
+              </div>
+
+
             </div>
           </div>
         </div>
@@ -63,7 +76,9 @@
               <input name="txtmsg" type="text" class="form-control" [(ngModel)]="newMessage" placeholder="Type your message here....."
                 id="usr">
             </div>
-            <button type="submit" [disabled]="otherUser==undefined || newMessage.length==0" class="btn btn-info btn-md">Send <span class="glyphicon glyphicon-send"></span></button>
+            <button type="submit" [disabled]="otherUser==undefined || newMessage.length==0" class="btn btn-info btn-md">Send
+              <span class="glyphicon glyphicon-send"></span>
+            </button>
           </div>
 
         </form>

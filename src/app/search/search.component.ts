@@ -15,8 +15,24 @@ export class SearchComponent implements OnInit {
 
   query: string
   result = [];
+  flag=0
   search() {
-    this.searchService.getSearchResults(this.query).subscribe(d => this.result = d);
+    this.flag=0
+    if(this.query == '')
+      this.query = undefined
+    this.searchService.getSearchResults(this.query).subscribe(d => {this.result = d;
+      console.log(this.result)  
+    if(d.length) {
+      this.flag = 1
+    }
+    else
+    {
+      this.flag=0
+    }
+
+    
+    });
+    
   }
 
   getProfile(i){
