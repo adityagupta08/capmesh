@@ -42,6 +42,7 @@ import { InvitationsReceivedComponent } from './connection/invitations-received/
 import { InvitationsSentComponent } from './connection/invitations-sent/invitations-sent.component';
 import { BlockListComponent } from './connection/block-list/block-list.component';
 import { ConnectionComponents } from "./app-routing.module";
+import { FilterPipe } from './connection/my-connections/filter.pipe';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -50,6 +51,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
 @NgModule({
   declarations: [
+    FilterPipe,
     AppComponent,
     AuthComponent,
     HomeComponent,
